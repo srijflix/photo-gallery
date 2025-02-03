@@ -1,1 +1,0 @@
-img.src = `https://raw.githubusercontent.com/srijflix/photo-gallery/main/images/photo${i}.jpg`;
