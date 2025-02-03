@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Photo Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            max-width: 90%;
+            margin: auto;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .gallery img {
+            width: 100px;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.2s;
+            loading: lazy;
+        }
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Client Photo Gallery</h2>
+        <p>Enter the access code to view your gallery.</p>
+        <input type="text" id="accessCode" placeholder="Enter access code">
+        <button onclick="verifyAccess()">Access Gallery</button>
+        <div id="gallery" class="gallery" style="display: none;"></div>
+    </div>
+
+    <script>
+        async function verifyAccess() {
+            var code = document.getElementById("accessCode").value;
+            var gallery = document.getElementById("gallery");
+            gallery.innerHTML = "";
+
+            // Validate code with a mock API call (replace with a real server)
+            let validCodes = ["1234", "5678"]; // Example: You can fetch from a server
+            if (!validCodes.includes(code)) {
+                alert("Invalid access code. Please try again.");
+                gallery.style.display = "none";
+                return;
+            }
+
+            // Fetch images from an online source (update this with your image hosting)
+            for (let i = 1; i <= 85; i++) {
+                var img = document.createElement("img");
+                img.src = `https://yourwebsite.com/images/photo${i}.jpg`; // Replace with actual server URL
+                img.alt = `Photo ${i}`;
+                img.loading = "lazy";
+                gallery.appendChild(img);
+            }
+            gallery.style.display = "flex";
+        }
+    </script>
+</body>
+</html>
